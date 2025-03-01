@@ -9,6 +9,10 @@ redis_client = redis.Redis(host='redis', port=6379, decode_responses=True)
 @celery.task
 def process_health_data(metric_data):
     db = SessionLocal()
+
+    if "timestamp" in metric_data and isinstance(metric_data["timestamp"], str) == False:
+        metric_data["timestamp"] = metric_data["timestamp"].isoformat()
+
     metric = HealthMetric(**metric_data)
     db.add(metric)
     db.commit()
