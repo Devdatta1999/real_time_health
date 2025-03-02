@@ -81,9 +81,15 @@ The code will take care of creating the table.
      Also we can get the aggregated data for a user within a given time range using the UI (Fetch Health Metrics)
 
   #### Result : 
-  ![preffect app test](https://github.com/user-attachments/assets/84441adf-98ac-40b4-b5de-960782caa484)
+ 
+
+https://github.com/user-attachments/assets/651e38c6-4ed4-496f-8a12-3bf51c0bc2a4
+
+
+
 
   ### 🏁 Conclusion : 
+
 This project successfully demonstrates a real-time health data ingestion and analytics pipeline, integrating FastAPI, PostgreSQL, Celery, Redis, WebSockets, and React to efficiently process and visualize health metrics from wearable devices. <br />
 
 By leveraging asynchronous processing, real-time streaming, and efficient data aggregation, the system allows users to:
