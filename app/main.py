@@ -7,9 +7,18 @@ from app.database import SessionLocal, init_db, get_db
 from app.models import HealthMetric
 from app.schemas import MetricRequest, MetricResponse
 from app.worker import process_health_data
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 active_connections = {}
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 🔥 Allow all origins (change this in production)
+    allow_credentials=True,
+    allow_methods=["*"],  # ✅ Allow all HTTP methods (GET, POST, etc.)
+    allow_headers=["*"],  # ✅ Allow all headers
+)
 
 @app.on_event("startup")
 async def startup():

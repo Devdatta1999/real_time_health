@@ -1,5 +1,5 @@
 import { useEffect, useState, useRef } from "react";
-
+import "./styles.css";
 export default function Dashboard() {
   const [userMetrics, setUserMetrics] = useState({});
   const socketsRef = useRef({});
@@ -46,36 +46,24 @@ export default function Dashboard() {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white flex flex-col items-center p-10">
-      <h1 className="text-4xl font-extrabold mb-10 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-teal-300">
-        Real-Time Health Dashboard
-      </h1>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl">
+    <div className="dashboard-container">
+      <h1 className="dashboard-title">Real-Time Health Dashboard</h1>
+      <div className="dashboard-grid">
         {Object.keys(userMetrics).map((userId) => (
-          <div key={userId} className="bg-white/10 backdrop-blur-lg shadow-2xl rounded-2xl p-8 border border-white/20 transition hover:scale-105">
-            <h2 className="text-2xl font-bold text-teal-300 mb-4 text-center">User {userId}</h2>
-
-            <div className="space-y-4 text-lg">
-              <p className="flex items-center space-x-2">
-                <span className="text-red-400 text-xl">💓</span>
-                <span className="text-gray-300 font-semibold">Heart Rate:</span>
-                <span className="text-teal-200">{userMetrics[userId]?.heart_rate} BPM</span>
-              </p>
-
-              <p className="flex items-center space-x-2">
-                <span className="text-yellow-400 text-xl">🚶</span>
-                <span className="text-gray-300 font-semibold">Steps:</span>
-                <span className="text-blue-300">{userMetrics[userId]?.steps}</span>
-              </p>
-
-              <p className="flex items-center space-x-2">
-                <span className="text-orange-400 text-xl">🔥</span>
-                <span className="text-gray-300 font-semibold">Calories:</span>
-                <span className="text-orange-300">{userMetrics[userId]?.calories} kcal</span>
-              </p>
+          <div key={userId} className="dashboard-card">
+            <h2 className="card-title">User {userId}</h2>
+            <div className="data-item">
+              <span>💓 Heart Rate:</span>
+              <span>{userMetrics[userId]?.heart_rate} BPM</span>
             </div>
-
+            <div className="data-item">
+              <span>🚶 Steps:</span>
+              <span>{userMetrics[userId]?.steps}</span>
+            </div>
+            <div className="data-item">
+              <span>🔥 Calories:</span>
+              <span>{userMetrics[userId]?.calories} kcal</span>
+            </div>
             <p className="text-sm text-gray-400 mt-6 text-center">
               Last Update: {userMetrics[userId]?.timestamp || "N/A"}
             </p>
